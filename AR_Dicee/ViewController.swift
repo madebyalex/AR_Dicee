@@ -22,14 +22,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         sceneView.autoenablesDefaultLighting = true
         
-        
-        // Create a new scene
-        let diceScene = SCNScene(named: "art.scnassets/diceCollada.scn")!
-        
-        if let diceNode = diceScene.rootNode.childNode(withName: "Dice", recursively: true) {
-            diceNode.position = SCNVector3(x: 0, y: -0.03, z: -0.1)
-            sceneView.scene.rootNode.addChildNode(diceNode)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,12 +47,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let touch = touches.first {
             let touchLocation = touch.location(in: sceneView)
             
+            // Transforming 2D position of touch (device screen) into 3D position
             let results = sceneView.hitTest(touchLocation, types: .existingPlaneUsingExtent)
             
-            if !results.isEmpty {
-                print("You touched the AR plane. Yay!")
-            } else {
-                print("You touched something else. Try again!")
+            if let hitResult = results.first {
+//              print(hitResult.worldTransform)
+                
+                // Create a new scene
+                let diceScene = SCNScene(named: "art.scnassets/diceCollada.scn")!
+                
+                if let diceNode = diceScene.rootNode.childNode(withName: "Dice", recursively: true) {
+                    diceNode.position = SCNVector3(
+                        x: hitResult.worldTransform.columns.3.x,
+                        y: hitResult.worldTransform.columns.3.y + diceNode.boundingSphere.radius,
+                        z: hitResult.worldTransform.columns.3.z
+                    )
+                    sceneView.scene.rootNode.addChildNode(diceNode)
+                }
             }
         }
     }
