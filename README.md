@@ -1,2 +1,2 @@
-# AR_Dicee
-AR Dicee iOS game
+# AR Dicee
+Basic Dicee iOS game for AR
