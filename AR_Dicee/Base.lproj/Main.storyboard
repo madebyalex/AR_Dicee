@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--AR Dicee-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="AR_Dicee" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,7 +28,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3fa-dB-hEJ">
+                    <navigationItem key="navigationItem" title="AR Dicee" id="3fa-dB-hEJ">
+                        <barButtonItem key="leftBarButtonItem" title="Remove all" id="IBg-b2-1SP">
+                            <connections>
+                                <action selector="removeAll:" destination="BV1-FR-VrT" id="2Ku-cB-u6k"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="HQf-Vu-k9x">
                             <connections>
                                 <action selector="rollAgain:" destination="BV1-FR-VrT" id="O6e-ew-ai6"/>
