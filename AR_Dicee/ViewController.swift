@@ -82,7 +82,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Adding a random rotation for the placed dices
         let randomX = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
         let randomZ = Float(arc4random_uniform(4) + 1) * (Float.pi/2)
-        
+
         dice.runAction(
             SCNAction.rotateBy(
                 x: CGFloat(randomX * 5),
